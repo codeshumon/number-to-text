@@ -1,0 +1,43 @@
+{
+  "name": "@codeshumon/number-to-text",
+  "version": "1.0.0",
+  "description": "Convert numbers to spoken words with accurate currency formatting for over 100 countries",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeshumon/number-to-text.git"
+  },
+  "keywords": [
+    "number-to-text",
+    "text-converter",
+    "conversion",
+    "n2t",
+    "num2text",
+    "convert",
+    "currency",
+    "format",
+    "formatting",
+    "currency-number-to-text",
+    "currency-to-text",
+    "numbers", 
+    "words",
+    "text",
+    "converter"
+  ],
+  "author": "codeshumon",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/codeshumon/number-to-text/issues"
+  },
+  "homepage": "https://github.com/codeshumon/number-to-text#readme",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  }
+}
