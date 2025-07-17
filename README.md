@@ -6,15 +6,14 @@
 Convert numbers to words with currency formatting for 130+ countries. Perfect for invoices, checks, and financial applications.
 </p>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/number-to-words">
-    <img src="https://img.shields.io/npm/v/number-to-words" alt="npm version">
+<p>
+  <a href="https://www.npmjs.com/package/@codeshumon/number-to-words">
+    <img src="https://img.shields.io/npm/v/@codeshumon/number-to-words.svg" alt="npm version">
   </a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
 </p>
-
 ---
 
 ## Table of Contents
@@ -40,29 +39,29 @@ Convert numbers to words with currency formatting for 130+ countries. Perfect fo
 
 <ul>
   <li>🔢 Convert numbers to words (e.g., <code>123</code> → "One Hundred Twenty Three")</li>
-  <li>💰 Currency formatting for 100+ countries</li>
+  <li>💰 Currency formatting for 130+ countries</li>
   <li>🔣 Supports both integer and decimal numbers</li>
   <li>🔧 TypeScript and JavaScript compatible</li>
   <li>📦 Lightweight (zero dependencies)</li>
-  <li>🌍 Supports negative and large numbers up to quadrillions</li>
+  <li>🌍 Supports negative and large numbers up to Trillion</li>
 </ul>
 
 ---
 
 ## Installation 📦
 
-<pre><code>npm install number-to-words
+<pre><code>npm install @codeshumon/number-to-words
 # or
-yarn add number-to-words
+yarn add @codeshumon/number-to-words
 </code></pre>
 
 ---
 
-## Basic Usage 🔢
+<h2>Basic Usage 🔢</h2>
 
-### Convert Numbers to Words
+<h3>Convert Numbers to Words (Node.js CommonJS - <code>main</code> field)</h3>
 
-<pre><code>const { numberToWords } = require('number-to-words');
+<pre><code>const { numberToWords } = require('@codeshumon/number-to-words');
 
 console.log(numberToWords(125.55));
 // Output: "One Hundred Twenty Five and Point Five Five"
@@ -71,11 +70,11 @@ console.log(numberToWords(588532654484815));
 // Output: "Five Hundred Eighty Eight Trillion Five Hundred Thirty Two Billion Six Hundred Fifty Four Million Four Hundred Eighty Four Thousand Eight Hundred Fifteen"
 </code></pre>
 
----
+<hr />
 
-## Convert to Currency Words 💰
+<h2>Convert to Currency Words 💰</h2>
 
-<pre><code>const { numberToCurrencyWords } = require('number-to-words');
+<pre><code>const { numberToCurrencyWords } = require('@codeshumon/number-to-words');
 
 // US Dollars
 console.log(numberToCurrencyWords(1234.56, 'US'));
@@ -88,6 +87,38 @@ console.log(numberToCurrencyWords(789.12, 'GB'));
 // Indian Rupees
 console.log(numberToCurrencyWords(4567.89, 'IN'));
 // "Four Thousand Five Hundred Sixty Seven Rupees and Eighty Nine Paise Only"
+</code></pre>
+
+<hr />
+
+<h2>ES Module Usage (via <code>module</code> field)</h2>
+
+<pre><code>import { numberToWords, numberToCurrencyWords } from '@codeshumon/number-to-words';
+
+console.log(numberToWords(2023));
+// Output: "Two Thousand Twenty Three"
+
+console.log(numberToCurrencyWords(2500.75, 'US'));
+// Output: "Two Thousand Five Hundred Dollars and Seventy Five Cents Only"
+</code></pre>
+
+<hr />
+
+<h2>Browser Usage 🌐 (via CDN using <code>browser</code> field)</h2>
+
+<h3>Use Directly in HTML</h3>
+
+<pre><code>&lt;script src="https://unpkg.com/@codeshumon/number-to-words"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  const { numberToWords, numberToCurrencyWords } = window.NumberToWords;
+
+  console.log(numberToWords(999.99));
+  // Output: "Nine Hundred Ninety Nine and Point Nine Nine"
+
+  console.log(numberToCurrencyWords(999.99, 'US'));
+  // Output: "Nine Hundred Ninety Nine Dollars and Ninety Nine Cents Only"
+&lt;/script&gt;
 </code></pre>
 
 ---
@@ -121,8 +152,8 @@ console.log(numberToCurrencyWords(4567.89, 'IN'));
 </code></pre>
 
 ### Large Number Support
-<pre><code>numberToWords(1000000000000000);
-// "One Quadrillion"
+<pre><code>numberToWords(1000000000000);
+// "One Trillion"
 </code></pre>
 
 ---
@@ -202,7 +233,7 @@ const amount: string = numberToCurrencyWords(123.45, 'US' as CountryCode);
 
 ## Benchmarks ⚡
 <ul>
-  <li>✅ ~2 KB minified & gzipped</li>
+  <!-- <li>✅ ~2 KB minified & gzipped</li> -->
   <li>✅ Converts up to quadrillion-range numbers in &lt;1ms</li>
   <li>✅ Zero dependencies ensures lightning-fast startup</li>
 </ul>
@@ -232,5 +263,5 @@ const amount: string = numberToCurrencyWords(123.45, 'US' as CountryCode);
 ---
 
 ## License 📄
-<p>MIT © codeshumon</p>
+<p><a href="https://www.npmjs.com/~codeshumon">MIT © codeshumon</a></p>
 <p>See LICENSE for full details.</p>
