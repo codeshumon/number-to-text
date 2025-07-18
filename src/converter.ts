@@ -15,11 +15,11 @@ export const numberToWords = (
     noComa = false,
     isAnd = false,
     noHypen = false,
-    titleCase = true,
+    titleCase = false,
   } = options || {};
 
   if (isNaN(parsedNum)) {
-    return titleCase ? "Zero" : "zero";
+    return "Zero";
   }
 
   const isNegative = parsedNum < 0;
@@ -28,58 +28,22 @@ export const numberToWords = (
   const [integerPart, originalDecimalPart] = absoluteNum.toFixed(2).split(".");
   const wholeNumber = parseInt(integerPart, 10);
 
-  if (
-    wholeNumber === 0 &&
-    (!originalDecimalPart || parseInt(originalDecimalPart, 10) === 0)
-  ) {
-    return titleCase ? "Zero" : "zero";
+  if (wholeNumber === 0 && (!originalDecimalPart || parseInt(originalDecimalPart, 10) === 0)) {
+    return "Zero";
   }
 
-  // Changed all base words to lowercase
-  const units = [
-    "",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-  ];
-  const teens = [
-    "ten",
-    "eleven",
-    "twelve",
-    "thirteen",
-    "fourteen",
-    "fifteen",
-    "sixteen",
-    "seventeen",
-    "eighteen",
-    "nineteen",
-  ];
-  const tens = [
-    "",
-    "ten",
-    "twenty",
-    "thirty",
-    "forty",
-    "fifty",
-    "sixty",
-    "seventy",
-    "eighty",
-    "ninety",
-  ];
-  const scales = ["", "thousand", "million", "billion", "trillion"];
+  // Base words in title case
+  const units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+  const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+  const tens = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+  const scales = ["", "Thousand", "Million", "Billion", "Trillion"];
 
   const chunkToWords = (n: number): string => {
     if (n === 0) return "";
     let words = "";
 
     if (n >= 100) {
-      words += units[Math.floor(n / 100)] + " hundred";
+      words += units[Math.floor(n / 100)] + " Hundred";
       n %= 100;
       if (n > 0) words += " ";
     }
@@ -94,10 +58,10 @@ export const numberToWords = (
     }
 
     if (n > 0) {
-      words += units[n];
+      words += noHypen ? " " + units[n] : units[n].toLowerCase();
     }
 
-    return words.trim();
+    return words;
   };
 
   let words = "";
@@ -132,23 +96,21 @@ export const numberToWords = (
   }
 
   const decimalPart = originalDecimalPart;
-
   if (decimalPart && parseInt(decimalPart, 10) > 0) {
-    words += (words ? " " : "") + "point";
+    words += (words ? " " : "") + "Point";
     for (const digitChar of decimalPart) {
       words += " " + units[parseInt(digitChar, 10)];
     }
   }
 
-  let finalWords = words || "zero";
-  finalWords = isNegative ? `negative ${finalWords}` : finalWords;
+  let finalWords = words || "Zero";
+  finalWords = isNegative ? `Negative ${finalWords}` : finalWords;
 
-  // Apply title case if enabled
-  if (titleCase) {
-    finalWords = finalWords
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+  // Apply title case to hyphenated words if requested
+  if (titleCase || noHypen) {
+    finalWords = finalWords.replace(/(\w+)-(\w+)/g, (match, p1, p2) => {
+      return `${p1}-${p2.charAt(0).toUpperCase() + p2.slice(1)}`;
+    });
   }
 
   // Ensure "and" remains lowercase
@@ -172,7 +134,7 @@ export const numberToCurrencyWords = (
     noComa = false,
     isAnd = false,
     noHypen = false,
-    titleCase = true,
+    titleCase = false,
   } = options || {};
 
   const formattedNum = parseFloat(num.toFixed(2));
@@ -181,29 +143,18 @@ export const numberToCurrencyWords = (
   let cleanSuffix = config.suffix.replace(/\s*only$/i, "").trim();
 
   if (isNaN(formattedNum)) {
-    let zeroResult = `zero ${config.majorPlural.toLowerCase()} ${cleanSuffix.toLowerCase()} only`;
-    return titleCase
-      ? zeroResult
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")
-      : zeroResult;
+    return `Zero ${config.majorPlural} ${cleanSuffix} only`;
   }
 
   const absoluteNum = Math.abs(formattedNum);
   const major = Math.floor(absoluteNum);
   const minor = Math.round((absoluteNum - major) * 100);
 
-  const majorWord = major === 1 
-    ? config.major.toLowerCase() 
-    : config.majorPlural.toLowerCase();
-    
+  const majorWord = major === 1 ? config.major : config.majorPlural;
   let result = `${numberToWords(major, { noComa, isAnd, noHypen, titleCase })} ${majorWord}`;
 
   if (minor > 0) {
-    const minorWord = minor === 1 
-      ? config.minor.toLowerCase() 
-      : config.minorPlural.toLowerCase();
+    const minorWord = minor === 1 ? config.minor : config.minorPlural;
     result += ` ${config.conjunction.toLowerCase()} ${numberToWords(minor, {
       noComa,
       isAnd,
@@ -212,19 +163,17 @@ export const numberToCurrencyWords = (
     })} ${minorWord}`;
   }
 
-  const sign = formattedNum < 0 ? "negative " : "";
+  const sign = formattedNum < 0 ? "Negative " : "";
+  let finalString = `${sign}${result} ${cleanSuffix} only`.replace(/\s+/g, " ").trim();
 
-  let finalString = `${sign}${result} ${cleanSuffix.toLowerCase()} only`
-    .replace(/\s+/g, " ")
-    .trim();
-
-  if (titleCase) {
-    finalString = finalString
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+  // Apply title case to hyphenated words if requested
+  if (titleCase || noHypen) {
+    finalString = finalString.replace(/(\w+)-(\w+)/g, (match, p1, p2) => {
+      return `${p1}-${p2.charAt(0).toUpperCase() + p2.slice(1)}`;
+    });
   }
 
+  // Ensure "and" remains lowercase
   finalString = finalString.replace(/\bAnd\b/g, "and");
 
   return finalString;
