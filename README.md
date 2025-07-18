@@ -123,6 +123,285 @@ console.log(numberToCurrencyWords(2500.75, 'US'));
 
 ---
 
+
+
+
+---
+
+<h2>Basic Usage 🔢</h2>
+
+<h3>Convert Numbers to Words (Node.js CommonJS - <code>main</code> field)</h3>
+
+<pre><code class="language-javascript">const { numberToWords } = require('@codeshumon/number-to-words');
+
+console.log(numberToWords(125.55));
+// Output: "One Hundred Twenty Five and Point Five Five"
+
+console.log(numberToWords(588532654484815));
+// Output: "Five Hundred Eighty Eight Trillion Five Hundred Thirty Two Billion Six Hundred Fifty Four Million Four Hundred Eighty Four Thousand Eight Hundred Fifteen"
+
+console.log(numberToWords(652222225.52226));
+// Output: "Six Hundred Fifty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToWords('4322222225.52226', { noHypen: true }));
+// Output: "Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToWords('4322222225.52226', { noComa: true }));
+// Output: "Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToWords(2522222225.52226, {isAnd : true }));
+// Output: "Two Billion Five Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Five Two Two Two Six"
+
+console.log(numberToWords('9222222225.8226', {titleCase : true}));
+// Output: "Nine Billion Two Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five And Point Eight Two Two Six"
+
+console.log(numberToWords(4022222225.6226, { titleCase : true, isAnd : true, noHypen: true }));
+// Output: "Four Billion Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five And Six Two Two Six"
+</code></pre>
+
+<hr />
+
+<h2>Convert to Currency Words 💰</h2>
+
+<pre><code class="language-javascript">const { numberToCurrencyWords } = require('@codeshumon/number-to-words');
+
+// US Dollars
+console.log(numberToCurrencyWords(1234.56, 'US'));
+// Output: "One Thousand Two Hundred Thirty Four Dollars and Fifty Six Cents Only"
+
+// British Pounds
+console.log(numberToCurrencyWords(789.12, 'GB'));
+// Output: "Seven Hundred Eighty Nine Pounds and Twelve Pence Only"
+
+// Indian Rupees
+console.log(numberToCurrencyWords(4567.89, 'IN'));
+// Output: "Four Thousand Five Hundred Sixty Seven Rupees and Eighty Nine Paise Only"
+
+// Default (assuming 'US' if no currency provided or unrecognized)
+console.log(numberToCurrencyWords('115255500015.58780'));
+// Output: "One Hundred Fifteen Billion Two Hundred Fifty Five Million Five Thousand Fifteen Dollars and Fifty Nine Cents Only"
+
+console.log(numberToCurrencyWords('5552111111115.2500', 'GB'));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Twenty Five Pence Only"
+
+console.log(numberToCurrencyWords('5552111111115.5500', 'GB', {noHypen: true}));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Fifty Five Pence Only"
+
+console.log(numberToCurrencyWords('5552111111115.5500', 'GB', {noComa: true}));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Fifty Five Pence Only"
+
+console.log(numberToCurrencyWords(5552111111115.6500, 'GB', {isAnd : true }));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Sixty Five Pence Only"
+
+console.log(numberToCurrencyWords(5552111111115.9500, 'GB', {titleCase : true}));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds And Ninety Five Pence Only"
+
+console.log(numberToCurrencyWords(5552111111115.750, 'GB', { titleCase : true, isAnd : true, noHypen: true }));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds And Seventy Five Pence Only"
+
+<hr />
+
+<h2>ES Module Usage (via <code>module</code> field)</h2>
+
+<pre><code class="language-javascript">import { numberToWords, numberToCurrencyWords } from '@codeshumon/number-to-words';
+
+console.log(numberToWords(2023));
+// Output: "Two Thousand Twenty Three"
+
+console.log(numberToCurrencyWords(2500.75, 'US'));
+// Output: "Two Thousand Five Hundred Dollars and Seventy Five Cents Only"
+
+console.log(numberToWords(652222225.52226));
+// Output: "Six Hundred Fifty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToCurrencyWords('5552111111115.2500', 'GB',));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Twenty Five Pence Only"
+</code></pre>
+
+<hr />
+
+<h2>Browser Usage (via <code>browser</code> field)</h2>
+
+<p>Include the script in your HTML:</p>
+
+<pre><code class="language-html">&lt;script src="path/to/dist/index.global.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Then, you can access the functions globally:</p>
+
+<pre><code class="language-javascript">console.log(numberToWords(123.45));
+// Output: "One Hundred Twenty Three and Point Four Five"
+
+console.log(numberToCurrencyWords(99.99, 'US'));
+// Output: "Ninety Nine Dollars and Ninety Nine Cents Only"
+
+console.log(numberToWords('4322222225.52226', { noHypen: true }));
+// Output: "Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToCurrencyWords(5552111111115.6500, 'GB', {isAnd : true }));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Sixty Five Pence Only"
+</code></pre>
+
+
+
+
+<h2>Basic Usage 🔢</h2>
+
+<h3>Convert Numbers to Words (Node.js CommonJS - <code>main</code> field)</h3>
+
+<pre><code class="language-javascript">const { numberToWords } = require('@codeshumon/number-to-words');
+
+console.log(numberToWords(125.55));
+// Output: "One Hundred Twenty Five and Point Five Five"
+
+console.log(numberToWords(588532654484815));
+// Output: "Five Hundred Eighty Eight Trillion Five Hundred Thirty Two Billion Six Hundred Fifty Four Million Four Hundred Eighty Four Thousand Eight Hundred Fifteen"
+
+console.log(numberToWords(652222225.52226));
+// Output: "Six Hundred Fifty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToWords('4322222225.52226', { noHypen: true }));
+// Output: "Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToWords('4322222225.52226', { noComa: true }));
+// Output: "Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToWords(2522222225.52226, {isAnd : true }));
+// Output: "Two Billion Five Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Five Two Two Two Six"
+
+console.log(numberToWords('9222222225.8226', {titleCase : true}));
+// Output: "Nine Billion Two Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five And Point Eight Two Two Six"
+
+console.log(numberToWords(4022222225.6226, { titleCase : true, isAnd : true, noHypen: true }));
+// Output: "Four Billion Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five And Six Two Two Six"
+</code></pre>
+
+<hr />
+
+<h2>Convert to Currency Words 💰</h2>
+
+<pre><code class="language-javascript">const { numberToCurrencyWords } = require('@codeshumon/number-to-words');
+
+// US Dollars
+console.log(numberToCurrencyWords(1234.56, 'US'));
+// Output: "One Thousand Two Hundred Thirty Four Dollars and Fifty Six Cents Only"
+
+// British Pounds
+console.log(numberToCurrencyWords(789.12, 'GB'));
+// Output: "Seven Hundred Eighty Nine Pounds and Twelve Pence Only"
+
+// Indian Rupees
+console.log(numberToCurrencyWords(4567.89, 'IN'));
+// Output: "Four Thousand Five Hundred Sixty Seven Rupees and Eighty Nine Paise Only"
+
+// Default (assuming 'US' if no currency provided or unrecognized)
+console.log(numberToCurrencyWords('115255500015.58780'));
+// Output: "One Hundred Fifteen Billion Two Hundred Fifty Five Million Five Thousand Fifteen Dollars and Fifty Nine Cents Only"
+
+console.log(numberToCurrencyWords('5552111111115.2500', 'GB'));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Twenty Five Pence Only"
+
+console.log(numberToCurrencyWords('5552111111115.5500', 'GB', {noHypen: true}));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Fifty Five Pence Only"
+
+console.log(numberToCurrencyWords('5552111111115.5500', 'GB', {noComa: true}));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Fifty Five Pence Only"
+
+console.log(numberToCurrencyWords(5552111111115.6500, 'GB', {isAnd : true }));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Sixty Five Pence Only"
+
+console.log(numberToCurrencyWords(5552111111115.9500, 'GB', {titleCase : true}));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds And Ninety Five Pence Only"
+
+console.log(numberToCurrencyWords(5552111111115.750, 'GB', { titleCase : true, isAnd : true, noHypen: true }));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds And Seventy Five Pence Only"
+
+
+<hr />
+
+<h2>ES Module Usage (via <code>module</code> field)</h2>
+
+<pre><code class="language-javascript">import { numberToWords, numberToCurrencyWords } from '@codeshumon/number-to-words';
+
+console.log(numberToWords(2023));
+// Output: "Two Thousand Twenty Three"
+
+console.log(numberToCurrencyWords(2500.75, 'US'));
+// Output: "Two Thousand Five Hundred Dollars and Seventy Five Cents Only"
+
+console.log(numberToWords(652222225.52226));
+// Output: "Six Hundred Fifty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six"
+
+console.log(numberToCurrencyWords('5552111111115.2500', 'GB',));
+// Output: "Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Twenty Five Pence Only"
+
+
+&lt;hr /&gt;
+
+&lt;h2&gt;Browser Usage 🌐 (via CDN using &lt;code&gt;browser&lt;/code&gt; field)&lt;/h2&gt;
+
+&lt;h3&gt;Use Directly in HTML&lt;/h3&gt;
+
+&lt;p&gt;Include the script in your HTML:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;script src=&quot;https://unpkg.com/@codeshumon/number-to-words&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, you can access the functions globally:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const { numberToWords, numberToCurrencyWords } = window.NumberToWords;
+
+console.log(numberToWords(999.99));
+// Output: &quot;Nine Hundred Ninety Nine and Point Nine Nine&quot;
+
+console.log(numberToCurrencyWords(999.99, &#39;US&#39;));
+// Output: &quot;Nine Hundred Ninety Nine Dollars and Ninety Nine Cents Only&quot;
+
+console.log(numberToWords(652222225.52226));
+// Output: &quot;Six Hundred Fifty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six&quot;
+
+console.log(numberToWords(&#39;4322222225.52226&#39;, { noHypen: true }));
+// Output: &quot;Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six&quot;
+
+console.log(numberToWords(&#39;4322222225.52226&#39;, { noComa: true }));
+// Output: &quot;Four Billion Three Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Point Five Two Two Two Six&quot;
+
+console.log(numberToWords(2522222225.52226, {isAnd : true }));
+// Output: &quot;Two Billion Five Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five and Five Two Two Two Six&quot;
+
+console.log(numberToWords(&#39;9222222225.8226&#39;, {titleCase : true}));
+// Output: &quot;Nine Billion Two Hundred Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five And Point Eight Two Two Six&quot;
+
+console.log(numberToWords(4022222225.6226, { titleCase : true, isAnd : true, noHypen: true }));
+// Output: &quot;Four Billion Twenty Two Million Two Hundred Twenty Two Thousand Two Hundred Twenty Five And Six Two Two Six&quot;
+
+console.log(numberToCurrencyWords(&#39;115255500015.58780&#39;));
+// Output: &quot;One Hundred Fifteen Billion Two Hundred Fifty Five Million Five Thousand Fifteen Dollars and Fifty Nine Cents Only&quot;
+
+console.log(numberToCurrencyWords(&#39;5552111111115.2500&#39;, &#39;GB&#39;));
+// Output: &quot;Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Twenty Five Pence Only&quot;
+
+console.log(numberToCurrencyWords(&#39;5552111111115.5500&#39;, &#39;GB&#39;, {noHypen: true}));
+// Output: &quot;Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Fifty Five Pence Only&quot;
+
+console.log(numberToCurrencyWords(&#39;5552111111115.5500&#39;, &#39;GB&#39;, {noComa: true}));
+// Output: &quot;Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Fifty Five Pence Only&quot;
+
+console.log(numberToCurrencyWords(5552111111115.6500, &#39;GB&#39;, {isAnd : true }));
+// Output: &quot;Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds and Sixty Five Pence Only&quot;
+
+console.log(numberToCurrencyWords(5552111111115.9500, &#39;GB&#39;, {titleCase : true}));
+// Output: &quot;Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds And Ninety Five Pence Only&quot;
+
+console.log(numberToCurrencyWords(5552111111115.750, &#39;GB&#39;, { titleCase : true, isAnd : true, noHypen: true }));
+// Output: &quot;Five Trillion Five Hundred Fifty Two Billion One Hundred Eleven Million One Hundred Eleven Thousand One Hundred Fifteen Pounds And Seventy Five Pence Only&quot;
+
+
+-----
+
+
+
+
 ## API Reference 📚
 
 ### <code>numberToWords(num: number | string): string</code>
