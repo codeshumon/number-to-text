@@ -22,7 +22,7 @@ Table of Contents
 <li><a href="#installation-">Installation 📦</a></li>
 <li><a href="#basic-usage-">Basic Usage 🔢</a></li>
 <li><a href="#advanced-usage-">Advanced Usage 🛠️</a></li>
-<li><a href="#api-reference-">API Reference & Options 📚</a></li>
+<li><a href="#api-reference--options-">API Reference & Options 📚</a></li>
 <li><a href="#supported-countries-">Supported Countries 🌎</a></li>
 <li><a href="#typescript-support-">TypeScript Support ✅</a></li>
 <li><a href="#benchmarks-">Benchmarks ⚡</a></li>
@@ -303,7 +303,7 @@ Options for numberToWords & numberToCurrencyWords
 <td>false</td>
 <td>Output words in Title Case, capitalizing hyphenated parts as well.</td>
 <td>
-<strong>false:</strong> "twenty-five"<br />
+<strong>false:</strong> "Twenty-five"<br />
 <strong>true:</strong> "Twenty-Five"
 </td>
 </tr>
