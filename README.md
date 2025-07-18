@@ -1,4 +1,4 @@
-<h1 align="center">number-to-words</h1>
+<h1 align="center">@codeshumon/number-to-words</h1>
 
 <h1 align="center">Convert Number to Words | Number to Words Converter Including Currency Format ➡️🔠</h1>
 
